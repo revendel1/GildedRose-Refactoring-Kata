@@ -15,17 +15,27 @@ describe GildedRose do
     expect(parsed_item.quality).to eq 0
   end
 
+  it '#add_item' do
+    items = [Item.new('foo', 0, 0)]
+    gilded_rose = GildedRose.new(items)
+    gilded_rose.add_item Item.new('Aged Brie', 2, 0)
+
+    expect(gilded_rose.items.size).to eq 2
+    expect(gilded_rose.items[1].class).to eq AgedBrieItem
+    expect(gilded_rose.items[1].name).to eq 'Aged Brie'
+  end
+
   it '#update_quality' do
     items = [
-      Item.new(name = '+5 Dexterity Vest', sell_in = 10, quality = 20),
-      Item.new(name = 'Aged Brie', sell_in = 2, quality = 0),
-      Item.new(name = 'Elixir of the Mongoose', sell_in = 5, quality = 7),
-      Item.new(name = 'Sulfuras, Hand of Ragnaros', sell_in = 0, quality = 80),
-      Item.new(name = 'Sulfuras, Hand of Ragnaros', sell_in = -1, quality = 80),
-      Item.new(name = 'Backstage passes to a TAFKAL80ETC concert', sell_in = 15, quality = 20),
-      Item.new(name = 'Backstage passes to a TAFKAL80ETC concert', sell_in = 10, quality = 49),
-      Item.new(name = 'Backstage passes to a TAFKAL80ETC concert', sell_in = 5, quality = 49),
-      Item.new(name = 'Conjured Mana Cake', sell_in = 3, quality = 6)
+      Item.new('+5 Dexterity Vest', 10, 20),
+      Item.new('Aged Brie', 2, 0),
+      Item.new('Elixir of the Mongoose', 5, 7),
+      Item.new('Sulfuras, Hand of Ragnaros', 0, 80),
+      Item.new('Sulfuras, Hand of Ragnaros', -1, 80),
+      Item.new('Backstage passes to a TAFKAL80ETC concert', 15, 20),
+      Item.new('Backstage passes to a TAFKAL80ETC concert', 10, 49),
+      Item.new('Backstage passes to a TAFKAL80ETC concert', 5, 49),
+      Item.new('Conjured Mana Cake', 3, 6)
     ]
     parsed_items = GildedRose.new(items).update_quality
 

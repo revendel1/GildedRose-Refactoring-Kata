@@ -17,9 +17,9 @@ describe AgedBrieItem do
     expect(item.quality).to eq 11
   end
 
-  it '#update' do
+  it '#next_day' do
     item = AgedBrieItem.new('Example', 5, 10)
-    item.update
+    item.next_day
 
     expect(item.sell_in).to eq 4
     expect(item.quality).to eq 11

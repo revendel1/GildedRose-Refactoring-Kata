@@ -7,16 +7,18 @@ class CommonItem < Item
     super(name, sell_in, quality)
   end
 
-  def update
+  def next_day
     update_sell_in
     update_quality
   end
 
-  protected
+  private
 
   def update_sell_in
     @sell_in -= 1
   end
+
+  protected
 
   def update_quality(dec = 1)
     @quality -= (@sell_in.positive? ? dec : dec * 2)

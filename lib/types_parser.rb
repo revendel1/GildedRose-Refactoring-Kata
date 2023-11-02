@@ -21,8 +21,6 @@ module TypesParser
     end
   end
 
-  private
-
   def self.fetch_type(name)
     TYPES.each_pair do |type, klass|
       return klass if name.start_with?(type)

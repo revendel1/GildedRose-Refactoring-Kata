@@ -14,9 +14,9 @@ describe CommonItem do
   end
 
   context 'methods' do
-    it '#update' do
+    it '#next_day' do
       item = CommonItem.new('Example', 5, 10)
-      item.update
+      item.next_day
 
       expect(item.name).to eq 'Example'
       expect(item.sell_in).to eq 4

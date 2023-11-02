@@ -9,7 +9,7 @@ describe Item do
     expect(item.quality).to eq 0
   end
 
-  it 'method #to_s' do
+  it '#to_s' do
     item = Item.new('Example Item', 5, 10)
 
     expect(item.to_s).to eq('Example Item, 5, 10')
