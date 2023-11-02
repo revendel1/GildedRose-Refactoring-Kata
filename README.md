@@ -33,7 +33,7 @@ gem install bundler
 ```
 3. Скопируйте проект
 ```
-https://github.com/revendel1/GildedRose-Refactoring-Kata.git
+git clone https://github.com/revendel1/GildedRose-Refactoring-Kata.git
 ```
 4. Перейдите в директорию проекта
 ```
@@ -50,14 +50,14 @@ bundle install
 irb
 ```
 2. Подключите используемые файлы
-```
+```ruby
 require './lib/gilded_rose'
 require './lib/types_parser'
 require './lib/item'
 ```
 3. Создайте массив объектов класса Item, указав для каждого из них его имя, срок годности и качество
 Например:
-```
+```ruby
 items = [
   Item.new(name="Aged Brie", sell_in=2, quality=0),
   Item.new(name="Elixir of the Mongoose", sell_in=5, quality=7),
@@ -69,7 +69,7 @@ items = [
 6. Обратившись к аттрибуту `items` экземпляра класса `GildedRose` можно увидеть, как поменялись значения качества товаров `quantity` и их срок годности `sell_in`.
 <br><br>
 
-Пример использования реализованного кода представлен в файле `texttest_fixture.rb`  
+Пример использования реализованного кода представлен в файле [texttest_fixture.rb](https://github.com/revendel1/GildedRose-Refactoring-Kata/blob/main/texttest_fixture.rb)  
 Запустить его можно командой консоли `ruby texttest_fixture.rb`
 
 ![Run code](./img/run_code.png)
