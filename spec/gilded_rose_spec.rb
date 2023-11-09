@@ -9,10 +9,10 @@ describe GildedRose do
     items = [Item.new('foo', 0, 0)]
     parsed_item = GildedRose.new(items).items[0]
 
-    expect(parsed_item.class).to eq CommonItem
-    expect(parsed_item.name).to eq 'foo'
-    expect(parsed_item.sell_in).to eq 0
-    expect(parsed_item.quality).to eq 0
+    expect(parsed_item[:type]).to eq CommonItem
+    expect(parsed_item[:item].name).to eq 'foo'
+    expect(parsed_item[:item].sell_in).to eq 0
+    expect(parsed_item[:item].quality).to eq 0
   end
 
   it '#add_item' do
@@ -21,8 +21,8 @@ describe GildedRose do
     gilded_rose.add_item Item.new('Aged Brie', 2, 0)
 
     expect(gilded_rose.items.size).to eq 2
-    expect(gilded_rose.items[1].class).to eq AgedBrieItem
-    expect(gilded_rose.items[1].name).to eq 'Aged Brie'
+    expect(gilded_rose.items[1][:type]).to eq AgedBrieItem
+    expect(gilded_rose.items[1][:item].name).to eq 'Aged Brie'
   end
 
   it '#update_quality' do
@@ -37,60 +37,42 @@ describe GildedRose do
       Item.new('Backstage passes to a TAFKAL80ETC concert', 5, 49),
       Item.new('Conjured Mana Cake', 3, 6)
     ]
-    parsed_items = GildedRose.new(items).update_quality
+    gr_items = GildedRose.new(items).update_quality
 
-    item0 = parsed_items[0]
-    expect(item0.class).to eq CommonItem
-    expect(item0.name).to eq '+5 Dexterity Vest'
-    expect(item0.sell_in).to eq 9
-    expect(item0.quality).to eq 19
+    expect(gr_items[0][:type]).to eq CommonItem
+    expect(items[0].sell_in).to eq 9
+    expect(items[0].quality).to eq 19
 
-    item1 = parsed_items[1]
-    expect(item1.class).to eq AgedBrieItem
-    expect(item1.name).to eq 'Aged Brie'
-    expect(item1.sell_in).to eq 1
-    expect(item1.quality).to eq 1
+    expect(gr_items[1][:type]).to eq AgedBrieItem
+    expect(items[1].sell_in).to eq 1
+    expect(items[1].quality).to eq 1
 
-    item2 = parsed_items[2]
-    expect(item2.class).to eq CommonItem
-    expect(item2.name).to eq 'Elixir of the Mongoose'
-    expect(item2.sell_in).to eq 4
-    expect(item2.quality).to eq 6
+    expect(gr_items[2][:type]).to eq CommonItem
+    expect(items[2].sell_in).to eq 4
+    expect(items[2].quality).to eq 6
 
-    item3 = parsed_items[3]
-    expect(item3.class).to eq LegendaryItem
-    expect(item3.name).to eq 'Sulfuras, Hand of Ragnaros'
-    expect(item3.sell_in).to be_nil
-    expect(item3.quality).to eq 80
+    expect(gr_items[3][:type]).to eq LegendaryItem
+    expect(items[3].sell_in).to be_nil
+    expect(items[3].quality).to eq 80
 
-    item4 = parsed_items[4]
-    expect(item4.class).to eq LegendaryItem
-    expect(item4.name).to eq 'Sulfuras, Hand of Ragnaros'
-    expect(item4.sell_in).to be_nil
-    expect(item4.quality).to eq 80
+    expect(gr_items[4][:type]).to eq LegendaryItem
+    expect(items[4].sell_in).to be_nil
+    expect(items[4].quality).to eq 80
 
-    item5 = parsed_items[5]
-    expect(item5.class).to eq BackstagePassesItem
-    expect(item5.name).to eq 'Backstage passes to a TAFKAL80ETC concert'
-    expect(item5.sell_in).to eq 14
-    expect(item5.quality).to eq 21
+    expect(gr_items[5][:type]).to eq BackstagePassesItem
+    expect(items[5].sell_in).to eq 14
+    expect(items[5].quality).to eq 21
 
-    item6 = parsed_items[6]
-    expect(item6.class).to eq BackstagePassesItem
-    expect(item6.name).to eq 'Backstage passes to a TAFKAL80ETC concert'
-    expect(item6.sell_in).to eq 9
-    expect(item6.quality).to eq 50
+    expect(gr_items[6][:type]).to eq BackstagePassesItem
+    expect(items[6].sell_in).to eq 9
+    expect(items[6].quality).to eq 50
 
-    item7 = parsed_items[7]
-    expect(item7.class).to eq BackstagePassesItem
-    expect(item7.name).to eq 'Backstage passes to a TAFKAL80ETC concert'
-    expect(item7.sell_in).to eq 4
-    expect(item7.quality).to eq 50
+    expect(gr_items[7][:type]).to eq BackstagePassesItem
+    expect(items[7].sell_in).to eq 4
+    expect(items[7].quality).to eq 50
 
-    item8 = parsed_items[8]
-    expect(item8.class).to eq ConjuredItem
-    expect(item8.name).to eq 'Conjured Mana Cake'
-    expect(item8.sell_in).to eq 2
-    expect(item8.quality).to eq 4
+    expect(gr_items[8][:type]).to eq ConjuredItem
+    expect(items[8].sell_in).to eq 2
+    expect(items[8].quality).to eq 4
   end
 end

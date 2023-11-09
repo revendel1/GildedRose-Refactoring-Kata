@@ -2,15 +2,24 @@ class GildedRose
   attr_reader :items
 
   def initialize(items)
-    # полученные объекты класса Item заменяем на объекты его потомков
-    @items = TypesParser.parse_items(items)
+    # для каждого товара храним его оригинальный объект и распарсенный для него тип
+
+    @items = items.map { |item| { item:, type: TypesParser.fetch_type(item.name) } }
   end
 
   def add_item(item)
-    @items += TypesParser.parse_items([item])
+    @items << { item:, type: TypesParser.fetch_type(item.name) }
   end
 
   def update_quality
-    @items.each(&:next_day)
+    @items.each do |item_data|
+      item = item_data[:item]
+
+      descendant = item_data[:type].new(item.name, item.sell_in, item.quality)
+      descendant.next_day
+
+      item.sell_in = descendant.sell_in
+      item.quality = descendant.quality
+    end
   end
 end

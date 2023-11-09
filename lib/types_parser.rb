@@ -14,13 +14,6 @@ module TypesParser
     'Sulfuras' => LegendaryItem
   }.freeze
 
-  def self.parse_items(items)
-    items.map do |item|
-      klass = fetch_type(item.name)
-      klass.new(item.name, item.sell_in, item.quality)
-    end
-  end
-
   def self.fetch_type(name)
     TYPES.each_pair do |type, klass|
       return klass if name.start_with?(type)
